@@ -1,0 +1,1 @@
+insert into order_item (id, quantity, product_id, purchase_order_id) values (1, 4, 395, 1);
