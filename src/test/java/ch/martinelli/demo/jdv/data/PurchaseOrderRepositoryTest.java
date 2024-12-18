@@ -1,7 +1,6 @@
 package ch.martinelli.demo.jdv.data;
 
 import ch.martinelli.demo.jdv.TestcontainersConfiguration;
-import oracle.sql.json.OracleJsonValue;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ class PurchaseOrderRepositoryTest {
 
     @Test
     void findAll() {
-        List<OracleJsonValue> all = purchaseOrderRepository.findAll();
+        List<PurchaseOrder> all = purchaseOrderRepository.findAll();
 
         assertThat(all).hasSize(1);
 
