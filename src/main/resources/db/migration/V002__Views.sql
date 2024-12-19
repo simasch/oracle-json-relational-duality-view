@@ -7,16 +7,16 @@ SELECT JSON {'_id'       : o.id,
                                            'street'     : c.street,
                                            'postalCode' : c.postal_code,
                                            'city'       : c.city }
-                             FROM customer c WITH NOUPDATE
+                             FROM customer c
                              WHERE c.id = o.customer_id ),
              'items'     : [ SELECT JSON {'_id'      : i.id,
                                           'quantity' : i.quantity,
                                           'product'  : ( SELECT JSON {'_id' : p.id,
                                                                     'name'  : p.name,
                                                                     'price' : p.price }
-                                                         FROM product p WITH NOUPDATE
+                                                         FROM product p
                                                          WHERE p.id = i.product_id ) }
-                             FROM order_item i WITH INSERT UPDATE
+                             FROM order_item i WITH INSERT UPDATE DELETE
                              WHERE i.purchase_order_id = o.id ]
              }
-FROM purchase_order o WITH INSERT UPDATE;
+FROM purchase_order o WITH INSERT UPDATE DELETE;

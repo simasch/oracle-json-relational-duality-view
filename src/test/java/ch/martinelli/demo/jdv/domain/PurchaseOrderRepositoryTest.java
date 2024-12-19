@@ -1,4 +1,4 @@
-package ch.martinelli.demo.jdv.data;
+package ch.martinelli.demo.jdv.domain;
 
 import ch.martinelli.demo.jdv.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class PurchaseOrderRepositoryTest {
     void findAll() {
         List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findAll();
 
-        assertThat(purchaseOrders).hasSize(1);
+        assertThat(purchaseOrders).hasSize(2);
 
         log.info(purchaseOrders.toString());
 

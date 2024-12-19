@@ -1,4 +1,4 @@
-package ch.martinelli.demo.jdv.data;
+package ch.martinelli.demo.jdv.domain;
 
 import com.oracle.spring.json.jsonb.JSONB;
 import com.oracle.spring.json.jsonb.JSONBRowMapper;
@@ -23,9 +23,7 @@ public class PurchaseOrderRepository {
 
     @Transactional(readOnly = true)
     public List<PurchaseOrder> findAll() {
-        return jdbcClient.sql("""
-                        select v.data from purchase_order_view v
-                        """)
+        return jdbcClient.sql("select v.data from purchase_order_view v")
                 .query(rowMapper)
                 .list();
     }
@@ -35,8 +33,7 @@ public class PurchaseOrderRepository {
         jdbcClient.sql("""
                         update purchase_order_view v 
                         set v.data = ?
-                        where v.data."_id" = ?
-                        """)
+                        where v.data."_id" = ?""")
                 .param(1, oson)
                 .param(2, purchaseOrder.get_id())
                 .update();

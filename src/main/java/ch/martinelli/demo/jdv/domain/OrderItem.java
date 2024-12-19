@@ -1,4 +1,4 @@
-package ch.martinelli.demo.jdv.data;
+package ch.martinelli.demo.jdv.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class OrderItem {
 
-    private Long _id;
+    private String _id;
     private int quantity;
     private Product product;
 }

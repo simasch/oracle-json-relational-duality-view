@@ -1,4 +1,4 @@
-package ch.martinelli.demo.jdv.data;
+package ch.martinelli.demo.jdv.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 public class PurchaseOrder {
 
-    private Long _id;
+    private String _id;
     private LocalDateTime orderDate;
     private Customer customer;
     private List<OrderItem> items;

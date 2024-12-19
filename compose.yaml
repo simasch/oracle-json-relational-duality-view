@@ -1,0 +1,9 @@
+services:
+  oracle:
+    image: 'gvenzl/oracle-free:23-slim-faststart'
+    environment:
+      - 'ORACLE_PASSWORD=secret'
+      - 'APP_USER=app'
+      - 'APP_USER_PASSWORD=app'
+    ports:
+      - '1521:1521'
