@@ -1,6 +1,6 @@
 CREATE JSON RELATIONAL DUALITY VIEW purchase_order_view AS
 SELECT JSON {'_id'       : o.id,
-             'orderDate' : o.order_date,
+             'orderDate' : o.order_date WITH NOUPDATE,
              'customer'  : ( SELECT JSON {'_id'         : c.id,
                                           'firstName'   : c.first_name,
                                           'lastName'    : c.last_name,

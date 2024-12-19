@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 public class BaseRepository<T, ID> {
@@ -26,6 +27,15 @@ public class BaseRepository<T, ID> {
         return jdbcClient.sql("select v.data from %s v".formatted(viewName))
                 .query(rowMapper)
                 .list();
+    }
+
+    public Optional<T> findById(ID id) {
+        return jdbcClient.sql("""
+                        select v.data from %s v where v.data."_id" = ?
+                        """.formatted(viewName))
+                .param(1, id)
+                .query(rowMapper)
+                .optional();
     }
 
     @Transactional
