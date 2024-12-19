@@ -23,8 +23,10 @@ public class BaseRepository<T, ID> {
         this.viewName = viewName;
     }
 
-    public List<T> findAll() {
-        return jdbcClient.sql("select v.data from %s v".formatted(viewName))
+    public List<T> findAll(int offset, int limit) {
+        return jdbcClient.sql("select v.data from %s v offset ? rows fetch next ? rows only".formatted(viewName))
+                .param(1, offset)
+                .param(2, limit)
                 .query(rowMapper)
                 .list();
     }

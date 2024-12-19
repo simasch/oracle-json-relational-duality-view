@@ -27,7 +27,7 @@ class PurchaseOrderRepositoryTest {
 
     @Test
     void findUpdateCreate() {
-        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findAll();
+        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findAll(0, 100);
 
         assertThat(purchaseOrders).hasSize(2);
 
@@ -45,7 +45,7 @@ class PurchaseOrderRepositoryTest {
 
         purchaseOrderRepository.insert(newPurchaseOrder);
 
-        purchaseOrders = purchaseOrderRepository.findAll();
+        purchaseOrders = purchaseOrderRepository.findAll(0, 100);
 
         assertThat(purchaseOrders).hasSize(3);
 
