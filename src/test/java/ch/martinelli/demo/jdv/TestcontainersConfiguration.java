@@ -12,8 +12,6 @@ public class TestcontainersConfiguration {
     @Bean
     @ServiceConnection
     OracleContainer oracleFreeContainer() {
-        System.setProperty("oracle.jdbc.jsonDefaultGetObjectType", "oracle.sql.json.OracleJsonValue");
-
         return new OracleContainer(DockerImageName.parse("gvenzl/oracle-free:23-slim-faststart"));
     }
 

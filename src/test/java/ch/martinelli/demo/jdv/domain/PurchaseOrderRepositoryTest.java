@@ -36,7 +36,7 @@ class PurchaseOrderRepositoryTest {
 
         purchaseOrder.getItems().getFirst().setQuantity(3);
 
-        purchaseOrderRepository.update(purchaseOrder);
+        purchaseOrderRepository.update(purchaseOrder, purchaseOrder.get_id());
 
         PurchaseOrder newPurchaseOrder = new PurchaseOrder();
         newPurchaseOrder.set_id(UUID.randomUUID().toString());
