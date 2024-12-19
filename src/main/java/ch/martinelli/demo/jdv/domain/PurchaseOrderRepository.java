@@ -28,7 +28,16 @@ public class PurchaseOrderRepository {
                 .list();
     }
 
-    public void save(PurchaseOrder purchaseOrder) {
+    @Transactional
+    public void insert(PurchaseOrder purchaseOrder) {
+        byte[] oson = jsonb.toOSON(purchaseOrder);
+        jdbcClient.sql("insert into purchase_order_view v (data) values (?)")
+                .param(1, oson)
+                .update();
+    }
+
+    @Transactional
+    public void update(PurchaseOrder purchaseOrder) {
         byte[] oson = jsonb.toOSON(purchaseOrder);
         jdbcClient.sql("""
                         update purchase_order_view v 
