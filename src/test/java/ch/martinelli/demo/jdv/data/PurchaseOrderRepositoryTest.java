@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +24,18 @@ class PurchaseOrderRepositoryTest {
 
     @Test
     void findAll() {
-        List<PurchaseOrder> all = purchaseOrderRepository.findAll();
+        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findAll();
 
-        assertThat(all).hasSize(1);
+        assertThat(purchaseOrders).hasSize(1);
 
-        log.info(all.toString());
+        log.info(purchaseOrders.toString());
+
+
+        PurchaseOrder purchaseOrder = purchaseOrders.getFirst();
+        purchaseOrder.setOrderDate(LocalDateTime.now());
+
+        purchaseOrder.getItems().getFirst().setQuantity(3);
+
+        purchaseOrderRepository.save(purchaseOrder);
     }
 }

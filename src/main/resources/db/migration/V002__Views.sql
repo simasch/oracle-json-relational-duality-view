@@ -16,7 +16,7 @@ SELECT JSON {'_id'       : o.id,
                                                                     'price' : p.price }
                                                          FROM product p
                                                          WHERE p.id = i.product_id ) }
-                             FROM order_item i
+                             FROM order_item i WITH INSERT UPDATE
                              WHERE i.purchase_order_id = o.id ]
              }
-FROM purchase_order o;
+FROM purchase_order o WITH INSERT UPDATE;

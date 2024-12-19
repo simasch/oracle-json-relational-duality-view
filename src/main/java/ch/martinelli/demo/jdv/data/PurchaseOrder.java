@@ -18,6 +18,4 @@ public class PurchaseOrder {
     private LocalDateTime orderDate;
     private Customer customer;
     private List<OrderItem> items;
-
-    private Metadata _metadata;
 }
