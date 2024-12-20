@@ -11,10 +11,10 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class BaseRepository<T, ID> {
 
-    private final JdbcClient jdbcClient;
-    private final JSONB jsonb;
-    private final JSONBRowMapper<T> rowMapper;
-    private final String viewName;
+    protected final JdbcClient jdbcClient;
+    protected JSONB jsonb;
+    protected final JSONBRowMapper<T> rowMapper;
+    protected final String viewName;
 
     public BaseRepository(JdbcClient jdbcClient, JSONB jsonb, JSONBRowMapper<T> rowMapper, String viewName) {
         this.jdbcClient = jdbcClient;

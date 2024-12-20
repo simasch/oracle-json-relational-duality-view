@@ -66,4 +66,11 @@ class PurchaseOrderRepositoryTest {
             assertThat(e.getSQLException().getMessage()).startsWith("ORA-40940: Cannot update field 'orderDate' corresponding to column 'ORDER_DATE' of table 'PURCHASE_ORDER' in JSON Relational Duality View 'PURCHASE_ORDER_VIEW': Missing UPDATE annotation or NOUPDATE annotation specified.");
         }
     }
+
+    @Test
+    void findByCustomer() {
+        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findByCustomer("550e8400-e29b-41d4-a716-446655440000");
+
+        assertThat(purchaseOrders).hasSize(1);
+    }
 }
