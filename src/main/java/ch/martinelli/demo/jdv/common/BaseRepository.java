@@ -12,7 +12,7 @@ import java.util.Optional;
 public class BaseRepository<T, ID> {
 
     protected final JdbcClient jdbcClient;
-    protected JSONB jsonb;
+    protected final JSONB jsonb;
     protected final JSONBRowMapper<T> rowMapper;
     protected final String viewName;
 

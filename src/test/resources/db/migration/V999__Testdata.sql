@@ -1,12 +1,8 @@
 -- Clear existing data
-DELETE
-FROM order_item;
-DELETE
-FROM purchase_order;
-DELETE
-FROM customer;
-DELETE
-FROM product;
+TRUNCATE TABLE order_item;
+TRUNCATE TABLE purchase_order;
+TRUNCATE TABLE customer;
+TRUNCATE TABLE product;
 
 -- Insert test customers
 INSERT INTO customer (id, first_name, last_name, street, postal_code, city)
