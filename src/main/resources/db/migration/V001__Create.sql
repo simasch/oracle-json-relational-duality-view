@@ -1,33 +1,42 @@
 CREATE TABLE customer
 (
-    id          varchar2(36)  not null primary key,
-    first_name  varchar2(100) not null,
-    last_name   varchar2(100) not null,
-    street      varchar2(100) not null,
-    postal_code varchar2(20)  not null,
-    city        varchar2(100) not null
+    id          VARCHAR2(36)  NOT NULL,
+    first_name  VARCHAR2(100) NOT NULL,
+    last_name   VARCHAR2(100) NOT NULL,
+    street      VARCHAR2(100) NOT NULL,
+    postal_code VARCHAR2(20)  NOT NULL,
+    city        VARCHAR2(100) NOT NULL,
+
+    CONSTRAINT pk_customer PRIMARY KEY (id)
 );
 
 CREATE TABLE product
 (
-    id    varchar2(36)  not null primary key,
-    name  varchar2(100) not null,
-    price number(9, 2)  not null
+    id    VARCHAR2(36)  NOT NULL,
+    name  VARCHAR2(100) NOT NULL,
+    price NUMBER(9, 2)  NOT NULL,
+
+    CONSTRAINT pk_product PRIMARY KEY (id)
 );
 
 CREATE TABLE purchase_order
 (
-    id          varchar2(36) not null primary key,
-    order_date  timestamp    not null,
+    id          VARCHAR2(36) NOT NULL,
+    order_date  TIMESTAMP    NOT NULL,
+    customer_id VARCHAR2(36) NOT NULL,
 
-    customer_id varchar2(36) not null references customer (id)
+    CONSTRAINT pk_purchase_order PRIMARY KEY (id),
+    CONSTRAINT fk_purchase_order_customer FOREIGN KEY (customer_id) REFERENCES customer (id)
 );
 
 CREATE TABLE order_item
 (
-    id                varchar2(36) not null primary key,
-    quantity          number(3)    not null,
+    id                VARCHAR2(36) NOT NULL,
+    quantity          NUMBER(3)    NOT NULL,
+    purchase_order_id VARCHAR2(36) NOT NULL,
+    product_id        VARCHAR2(36) NOT NULL,
 
-    purchase_order_id varchar2(36) not null references purchase_order (id),
-    product_id        varchar2(36) not null references product (id)
+    CONSTRAINT pk_order_item PRIMARY KEY (id),
+    CONSTRAINT fk_order_item_purchase_order FOREIGN KEY (purchase_order_id) REFERENCES purchase_order (id),
+    CONSTRAINT fk_order_item_product FOREIGN KEY (product_id) REFERENCES product (id)
 );
