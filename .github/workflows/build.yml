@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
+      checks: 'write'
 
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +29,14 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+
+      - name: Cache Docker images
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: Maven Build, Test, and Create Docker Image
         run: mvn -B test
