@@ -1,6 +1,8 @@
 # Oracle JSON Relational Duality View
 
-This project demonstrates how to use Oracle's JSON Relational Duality Views with Spring Boot and Testcontainers.
+This project demonstrates how to
+use [Oracle's JSON Relational Duality Views](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/overview-json-relational-duality-views.html)
+with Spring Boot and Testcontainers.
 It shows how to seamlessly work with both relational and JSON data in your Java applications.
 
 ## What is JSON Relational Duality?
@@ -46,6 +48,7 @@ The tests will automatically:
 
 For further reference, please consider the following sections:
 
+* [Overview of JSON-Relational Duality Views](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/overview-json-relational-duality-views.html)
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.0/maven-plugin)
 * [Spring Boot Testcontainers support](https://docs.spring.io/spring-boot/3.4.0/reference/testing/testcontainers.html#testing.testcontainers)
