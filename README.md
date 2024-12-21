@@ -39,6 +39,7 @@ The tests will automatically:
 - Start an Oracle container
 - Set up the database schema
 - Create a duality view
+- Load example data
 - Run the example operations
 
 ## Reference Documentation
