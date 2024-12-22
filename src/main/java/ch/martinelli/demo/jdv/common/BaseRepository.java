@@ -113,25 +113,6 @@ public class BaseRepository<T, ID> {
     }
 
     /**
-     * Convert the ID to the correct type.
-     *
-     * @param value The ID value.
-     * @return The ID value converted to the correct type.
-     */
-    private Object convertToIdType(Object value) {
-        if (value instanceof BigDecimal bigDecimal) {
-            // Common ID types conversion
-            if (bigDecimal.scale() == 0) {
-                if (bigDecimal.longValue() == bigDecimal.doubleValue()) {
-                    return bigDecimal.longValue();
-                }
-                return bigDecimal.intValue();
-            }
-        }
-        return value;
-    }
-
-    /**
      * Update an entity.
      *
      * @param object The entity to update.
@@ -156,5 +137,24 @@ public class BaseRepository<T, ID> {
                         WHERE v.data."_id" = ?""".formatted(viewName))
                 .param(1, id)
                 .update();
+    }
+
+    /**
+     * Convert the ID to the correct type.
+     *
+     * @param value The ID value.
+     * @return The ID value converted to the correct type.
+     */
+    private Object convertToIdType(Object value) {
+        if (value instanceof BigDecimal bigDecimal) {
+            // Common ID types conversion
+            if (bigDecimal.scale() == 0) {
+                if (bigDecimal.longValue() == bigDecimal.doubleValue()) {
+                    return bigDecimal.longValue();
+                }
+                return bigDecimal.intValue();
+            }
+        }
+        return value;
     }
 }

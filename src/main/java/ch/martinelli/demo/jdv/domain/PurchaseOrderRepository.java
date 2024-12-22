@@ -14,8 +14,8 @@ public class PurchaseOrderRepository extends BaseRepository<PurchaseOrder, Long>
 
     public List<PurchaseOrder> findByCustomer(Long customerId) {
         return jdbcClient.sql("""
-                        select v.data from %s v where v.data.customer."_id" = ?
-                        """.formatted(viewName))
+                        select v.data from purchase_order_view v where v.data.customer."_id" = ?
+                        """)
                 .param(1, customerId)
                 .query(rowMapper)
                 .list();
