@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 public class PurchaseOrder {
 
-    private String _id;
+    private Long _id;
     private LocalDateTime orderDate;
     private Customer customer;
     private List<OrderItem> items;

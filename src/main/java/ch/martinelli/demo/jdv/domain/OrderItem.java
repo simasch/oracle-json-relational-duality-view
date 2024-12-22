@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class OrderItem {
 
-    private String _id;
+    private Long _id;
     private int quantity;
     private Product product;
 }

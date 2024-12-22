@@ -12,7 +12,6 @@ import org.springframework.jdbc.UncategorizedSQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,11 +38,12 @@ class PurchaseOrderRepositoryTest {
         purchaseOrderRepository.update(purchaseOrder, purchaseOrder.get_id());
 
         PurchaseOrder newPurchaseOrder = new PurchaseOrder();
-        newPurchaseOrder.set_id(UUID.randomUUID().toString());
         newPurchaseOrder.setOrderDate(LocalDateTime.now());
         newPurchaseOrder.setCustomer(purchaseOrder.getCustomer());
 
-        purchaseOrderRepository.insert(newPurchaseOrder);
+        Long id = purchaseOrderRepository.insert(newPurchaseOrder);
+        assertThat(id).isNotNull();
+        assertThat(id).isEqualTo(1000L);
 
         purchaseOrders = purchaseOrderRepository.findAll(0, 100);
 
@@ -54,7 +54,7 @@ class PurchaseOrderRepositoryTest {
 
     @Test
     void updateReadOnlyField() {
-        Optional<PurchaseOrder> optionalPurchaseOrder = purchaseOrderRepository.findById("550e8400-e29b-41d4-a716-446655440006");
+        Optional<PurchaseOrder> optionalPurchaseOrder = purchaseOrderRepository.findById(1L);
         assertThat(optionalPurchaseOrder).isPresent();
 
         PurchaseOrder purchaseOrder = optionalPurchaseOrder.get();
@@ -69,8 +69,13 @@ class PurchaseOrderRepositoryTest {
 
     @Test
     void findByCustomer() {
-        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findByCustomer("550e8400-e29b-41d4-a716-446655440000");
+        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findByCustomer(1L);
 
         assertThat(purchaseOrders).hasSize(1);
+    }
+
+    @Test
+    void deleteById() {
+        purchaseOrderRepository.deleteById(1L);
     }
 }
