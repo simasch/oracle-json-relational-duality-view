@@ -1,5 +1,6 @@
 package ch.martinelli.demo.jdv.domain;
 
+import ch.martinelli.demo.jdv.common.Metadata;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,4 +19,6 @@ public class PurchaseOrder {
     private LocalDateTime orderDate;
     private Customer customer;
     private List<OrderItem> items;
+
+    private Metadata _metadata;
 }
