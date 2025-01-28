@@ -40,9 +40,3 @@ jobs:
 
       - name: Maven Build, Test, and Create Docker Image
         run: mvn -B test
-
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()  # Run this step even if previous steps fail
-        with:
-          files: "**/target/surefire-reports/TEST-*.xml"
