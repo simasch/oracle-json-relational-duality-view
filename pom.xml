@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.oracle.database.spring</groupId>
             <artifactId>oracle-spring-boot-starter-json-collections</artifactId>
-            <version>25.0.0</version>
+            <version>25.1.0</version>
         </dependency>
 
         <dependency>
